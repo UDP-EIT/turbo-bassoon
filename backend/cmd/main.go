@@ -23,7 +23,9 @@ func main() {
 		ValidateHeaders: false,
 	}))
 
+	server.GET("/studentsbyname", api.GetAllStudentsByName)
 	server.GET("/students", api.GetAllStudents)
 	server.POST("/students", api.NewStudent)
+	server.DELETE("/students/:id", api.DeleteStudent)
 	server.Run()
 }

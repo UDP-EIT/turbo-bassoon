@@ -14,9 +14,20 @@ const getStudents = async () => {
 };
 
 const newStudent = async (body) => {
-    const response = await fetch("http://127.0.0.1:8080/students", {
+    const response = await fetch(`http://127.0.0.1:8080/students`, {
         method: "POST",
         body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+    const myJson = await response.json();
+    return myJson;
+};
+
+const getStudentsByName = async (name) => {
+    const response = await fetch(`http://127.0.0.1:8080/studentsbyname?name=${name}`, {
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
         },
@@ -29,6 +40,7 @@ function App() {
     const [name, setName] = useState("");
     const [lastname, setLastname] = useState("");
     const [section, setSection] = useState("");
+    const [busqueda, setBusqueda] = useState("");
     const [students, setStudents] = useState([]);
     const [modal, setModal] = useState(false);
 
@@ -52,9 +64,34 @@ function App() {
         });
     }
 
+    function handleGetStudentByName() {
+        getStudentsByName(busqueda).then((data) => {
+            // const newStudents = [];
+            // newStudents.push(data);
+            // setStudents(newStudents);
+            setStudents(data);
+        });
+    }
+
     return (
         <div className={styles.App}>
             <h1 className={styles.Title}>Alumnos</h1>
+            <Form>
+                <FormGroup>
+                    <Label for="busqueda">Busqueda</Label>
+                    <Input
+                        type="text"
+                        name="busqueda"
+                        id="busqueda"
+                        placeholder="Brian"
+                        value={busqueda}
+                        onChange={(e) => setBusqueda(e.target.value)}
+                    />
+                </FormGroup>
+            </Form>
+            <Button color="primary" onClick={() => handleGetStudentByName()}>
+                BUSCAR
+            </Button>
             <Table striped bordered>
                 <thead>
                     <tr>
@@ -67,7 +104,7 @@ function App() {
                 <tbody>
                     {students.map((student, index) => (
                         <tr key={index}>
-                            <th scope="row">{index + 1}</th>
+                            <th scope="row">{student.ID}</th>
                             <td>{student.name}</td>
                             <td>{student.last_name}</td>
                             <td>{student.section}</td>

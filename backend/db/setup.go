@@ -38,13 +38,9 @@ func Connect() {
 func Setup() {
 	db, err := gorm.Open(postgres.Open(databaseURL), &gorm.Config{})
 
-	// db, err := gorm.Open("sqlite3", "test.db")
-
 	if err != nil {
 		panic(err)
-		// panic("failed to connect database")
 	}
-
 	// Migrate the schema
 	db.AutoMigrate(&Student{})
 
