@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "f0fe8c21-8036-4c88-9909-9dfe11c74639",
+		"name": "Caramelo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Owner",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Brian\",\n    \"last_name\": \"Bastias\",\n    \"email\": \"brian.bastias@uchile.cl\",\n    \"carId\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/owners",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"owners"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Cars",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"color\": \"Rosado\",\n    \"model\": \"Quilombo\",\n    \"year\": 2021,\n    \"price\": 100,\n    \"engine\": \"Supercohete\",\n    \"brandId\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/cars",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Brands",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Savory\",\n    \"origin\": \"Chilena\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/brands",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"brands"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
